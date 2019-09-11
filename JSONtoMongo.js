@@ -8,12 +8,13 @@ var fs = require('fs'),
     Schema = mongoose.Schema, 
     Listing = require('./ListingSchema.js'), 
     config = require('./config');
+var listingData,newListing;
 
 /* Connect to your database using mongoose - remember to keep your key secret*/
 //see https://mongoosejs.com/docs/connections.html
 //See https://docs.atlas.mongodb.com/driver-connection/
 
-mongoose.connect('mongodb+srv://admin:<password>@cen3031cluster-tty9u.mongodb.net/test?retryWrites=true&w=majority');
+mongoose.connect(config.db.uri);
 /* 
   Instantiate a mongoose model for each listing object in the JSON file, 
   and then save it to your Mongo database 
@@ -23,13 +24,14 @@ mongoose.connect('mongodb+srv://admin:<password>@cen3031cluster-tty9u.mongodb.ne
  */
 fs.readFile('listings.json', 'utf8', function(err, data) {
   if (err) throw err;
-  var listingData = JSON.parse(data);
+  listingData = JSON.parse(data);
+  listingData.entries.forEach(function(listingData){
+    newListing = new Listing(listingData);
+    newListing.save(function(err){if (err) throw err;});
+  });
 });
 
 
-newListing.save(function(err){
-  if (err) throw err;
-});
 
 
 
