@@ -4,6 +4,6 @@
 
 module.exports = {
     db: {
-      uri: 'mongodb+srv://admin:cen3031test@cen3031cluster-tty9u.mongodb.net/test?retryWrites=true&w=majority',
+      uri: '',
     }
   };
