@@ -48,11 +48,6 @@ var updatePhelpsLab = function() {
     if (err) throw err;
     console.log('Updated the Phelps Laboratory Address');
   });
-  /*
-  Listing.find({ code: 'PHL' }, function (err, listings){
-    console.log(listings);
-  });
-  */
 };
 var retrieveAllListings = function() {
   /* 
