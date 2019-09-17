@@ -28,7 +28,7 @@ listingSchema.pre('save', function(next) {
   /* your code here */
   var currentDate = new Date();
   this.updated_at = currentDate;
-  if (this.created_at){
+  if (!this.created_at){
     this.created_at = currentDate;
   }
   next();
