@@ -10,7 +10,7 @@ class Search extends React.Component {
 		//You will need to save the value from the textbox and update it as it changes
 		//You will need the onChange value for the input tag to capture the textbox value
 		
-		console.log('filterText value', this.props.filterText)
+		//console.log('filterText value', this.props.filterText)*
 		return (
 			<header>
 			<form>

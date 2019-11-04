@@ -25,7 +25,7 @@ class ViewBuilding extends React.Component {
 					</div>
 				)
 			})
-		console.log(this.props.buildings)
+		//console.log(this.props.buildings)
 		return (
 			<div>
 				<p>
@@ -35,6 +35,9 @@ class ViewBuilding extends React.Component {
 				<ul>
 					{buildings}
 				</ul>
+				<button onClick={this.props.removeBuilding}>
+					Remove Building
+				</button>
 			</div>
 		)
 	}

@@ -8,7 +8,9 @@ class BuilingList extends React.Component  {
 		const buildings = this.props.buildings
 		const buildingList = this.props.data
 		.filter(code => {
-			return code.code.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
+			return code.code.toLowerCase().indexOf(filterText.toLowerCase()) >= 0 
+			|| 
+			code.name.toLowerCase().indexOf(filterText.toLowerCase()) >= 0
 		})
 		.map(directory => {
 			return (

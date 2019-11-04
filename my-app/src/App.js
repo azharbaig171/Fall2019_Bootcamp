@@ -22,13 +22,6 @@ class App extends React.Component {
 
   selectedUpdate(id) {
     //Here you will need to update the selectedBuilding property of state to the id passed into this function
-    const newBuilding = [id]
-    this.setState({
-      selectedBuilding: newBuilding
-    })
-  }
-
-  addBuilding(id){
     this.setState({ selectedBuilding: [id] })
   }
 
@@ -62,8 +55,7 @@ class App extends React.Component {
                     data={this.props.data}
                     filterText={this.state.filterText}
                     buildings = {this.state.selectedBuilding}
-                    addBuilding={this.addBuilding.bind(this)}
-                    removeBuilding = {this.removeBuilding.bind(this)}
+                    addBuilding={this.selectedUpdate.bind(this)}
                   />
                 </table>
               </div>
@@ -71,7 +63,10 @@ class App extends React.Component {
             <div className="column2">
               <ViewBuilding 
               buildings = {this.state.selectedBuilding}
-              data = {this.props.data}/>
+              data = {this.props.data}
+              removeBuilding = {this.removeBuilding.bind(this)}
+              />
+
             </div>
           </div>
           <Credit />
