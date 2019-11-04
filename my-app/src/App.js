@@ -9,27 +9,45 @@ class App extends React.Component {
     super(props);
     this.state = {
       filterText: '',
-      selectedBuilding: 0
+      selectedBuilding: []
     };
   }
 
   filterUpdate(value) {
     //Here you will need to set the filterText property of state to the value passed into this function
+    this.setState({
+      filterText: value
+    })
   }
 
   selectedUpdate(id) {
     //Here you will need to update the selectedBuilding property of state to the id passed into this function
+    const newBuilding = [id]
+    this.setState({
+      selectedBuilding: newBuilding
+    })
   }
 
+  addBuilding(id){
+    this.setState({ selectedBuilding: [id] })
+  }
+
+  removeBuilding(id){
+    this.setState({ selectedBuilding: [] })
+  }
+
+
   render() {
-    
+    console.log(this.state.selectedBuilding)
     return (
       <div className="bg">
         <div className="row">
           <h1>UF Directory App</h1>
         </div>
 
-        <Search/>
+        <Search filterText={this.state.filterText}
+        filterUpdate={this.filterUpdate.bind(this)}
+        />
         <main>
           <div className="row">
             <div className="column1">
@@ -42,12 +60,18 @@ class App extends React.Component {
                   </tr>
                   <BuildingList
                     data={this.props.data}
+                    filterText={this.state.filterText}
+                    buildings = {this.state.selectedBuilding}
+                    addBuilding={this.addBuilding.bind(this)}
+                    removeBuilding = {this.removeBuilding.bind(this)}
                   />
                 </table>
               </div>
             </div>
             <div className="column2">
-              <ViewBuilding />
+              <ViewBuilding 
+              buildings = {this.state.selectedBuilding}
+              data = {this.props.data}/>
             </div>
           </div>
           <Credit />
