@@ -1,11 +1,11 @@
 import React from 'react';
+import RemoveBuilding from './RemoveBuilding';
 
 class BuilingList extends React.Component  {
 	render() {
 		//console.log('This is my directory file', this.props.data);
 		const filterText = this.props.filterText
 		const addBuilding = this.props.addBuilding
-		const buildings = this.props.buildings
 		const buildingList = this.props.data
 		.filter(code => {
 			return code.code.toLowerCase().indexOf(filterText.toLowerCase()) >= 0 
@@ -16,17 +16,24 @@ class BuilingList extends React.Component  {
 			return (
 				<tr 
 				key={directory.id}
-				onClick={() => 
-				addBuilding(directory.id)
-				}
 				>
-				<td>{directory.code} </td>
-				<td> {directory.name} </td>
+				<td onClick={() => addBuilding(directory.id)}>
+				{directory.code} 
+				</td>
+				<td onClick={() => addBuilding(directory.id)}>
+				{directory.name}
+				</td>
+				<RemoveBuilding
+				id = {directory.id}
+				removeListing = {this.props.removeListing.bind(this)}
+            	/>
 				</tr>
 			)
 		})
 
-		return <div>{buildingList}</div>;
+		return (
+		<div>{buildingList}</div>
+		)
 	}
 }
 export default BuilingList;

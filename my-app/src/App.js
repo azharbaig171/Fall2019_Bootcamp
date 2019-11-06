@@ -3,11 +3,13 @@ import Search from './components/Search';
 import ViewBuilding from './components/ViewBuilding';
 import BuildingList from './components/BuildingList';
 import Credit from './components/Credit';
+import AddBuilding from './components/AddBuilding';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      data: this.props.data,
       filterText: '',
       selectedBuilding: []
     };
@@ -25,17 +27,38 @@ class App extends React.Component {
     this.setState({ selectedBuilding: [id] })
   }
 
-  removeBuilding(id){
+  removeBuilding(){
     this.setState({ selectedBuilding: [] })
   }
 
+  removeListing(id){
+    const updatedData = this.state.data.filter(function(value){
+      return value.id !== id;
+    })
+    this.setState({ data: updatedData })
+  }
+
+  addListing(a, b, c, d, e){
+    const coordinates = d.split(" ");
+    const building = {
+      id: a,
+      code: b,
+      name: c,
+      coordinates: {
+        latitude: coordinates[0],
+        longitude: coordinates[1],
+      },
+      address: e
+    }
+    const updatedData = this.state.data.concat([building])
+    this.setState({ data: updatedData })
+  }
 
   render() {
-    console.log(this.state.selectedBuilding)
     return (
       <div className="bg">
         <div className="row">
-          <h1>UF Directory App</h1>
+          <h1 className= "button:hover">UF Directory App</h1>
         </div>
 
         <Search filterText={this.state.filterText}
@@ -52,10 +75,11 @@ class App extends React.Component {
                     </td>
                   </tr>
                   <BuildingList
-                    data={this.props.data}
+                    data={this.state.data}
                     filterText={this.state.filterText}
                     buildings = {this.state.selectedBuilding}
                     addBuilding={this.selectedUpdate.bind(this)}
+                    removeListing = {this.removeListing.bind(this)}
                   />
                 </table>
               </div>
@@ -63,10 +87,13 @@ class App extends React.Component {
             <div className="column2">
               <ViewBuilding 
               buildings = {this.state.selectedBuilding}
-              data = {this.props.data}
+              data = {this.state.data}
               removeBuilding = {this.removeBuilding.bind(this)}
               />
-
+              <AddBuilding
+              data = {this.state.data}
+              addListing = {this.addListing.bind(this)}
+              />
             </div>
           </div>
           <Credit />

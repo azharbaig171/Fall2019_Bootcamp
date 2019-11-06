@@ -52,6 +52,7 @@ td:hover {
 	float: left;
 	width: 50%;
 	padding: 10px;
+	background-color: blue;
 }
 .column2 {
 	float: left;
@@ -76,6 +77,7 @@ td:hover {
 	max-height: 800px;
 	overflow: auto;
 	scroll-behavior: smooth;
+	background-color: orange;
 }
 
 /* ##### Footer ##### */
@@ -96,7 +98,21 @@ button {
 	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 	border-radius: 3px;
 	outline: none;
+	background-color: rgb(192, 141, 192);
+	
 }
 button:hover {
 	background: #ddd;
+}
+.randomtext {
+	color: rgb(141, 141, 76);
+	border: solid 5px gold;
+}
+.bg {
+	background-color: turquoise;
+	background-image: url("https://live.staticflickr.com/1063/1022372755_47933c3cdc_b.jpg");
+	background-position: right top;
+}
+.list{
+	color: red;
 }
